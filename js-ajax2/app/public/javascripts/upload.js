@@ -50,7 +50,7 @@ $('#upload-input').on('change', function(){
             if (percentComplete === 100) {
               $('.progress-bar').html('Done');
             }
-
+            
           }
 
         }, false);
