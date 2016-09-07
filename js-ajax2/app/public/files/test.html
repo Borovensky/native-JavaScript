@@ -1,0 +1,25 @@
+<h1>How the Server Works</h1>
+<p>
+Now that the server is up and running, it’s time to analyze the code. The first thing to notice is the call to require() on line 1. Node.js provides a simple module system with a large developer community. Node.js programs can load individual modules using the require() method. While many modules must be downloaded, some modules, such as http are included with Node.js installations.
+</p>
+<p>
+On line 2, the HTTP server is created using the http module’s createServer() method. Like most Node.js functions, createServer() takes a callback function as an argument. This callback function is executed each time the server receives a new request.
+</p>
+<p>
+The callback function takes two arguments, request and response. The request object contains information regarding the client’s request, such as the URL, HTTP headers, and much more. Similarly, the response object is used to return data back to the client.
+</p>
+<p>
+The callback function begins by calling the response.writeHead() method. This method sends an HTTP status code and a collection of response headers back to the client. The status code is used to indicate the result of the request. For example, everyone has encountered a 404 error before, indicating that a page could not be found. The example server returns the code 200, which indicates success.
+</p>
+<p>
+Along with the status code, the server returns a number of HTTP headers which define the parameters of the response. If you do not specify headers, Node.js will implicitly send them for you. The example server specifies only the Content-Type header. This particular header defines the MIME type of the response. In the case of an HTML response, the MIME type is “text/html”.
+</p>
+<p>
+Next, the server executes several calls to response.write(). These calls are used to write the HTML page. By default, UTF-8 character encoding is used. Technically, all of these calls could be combined into a single call to improve performance. However, for such a trivial example, performance has been sacrificed for the sake of code readability.
+</p>
+<p>
+After the HTML page has been written, the response.end() method is called. By calling this method, we are telling the server that the response headers and body have been sent, and that the request has been fulfilled. The example server calls end() with no parameters. However, end() can also be called like write(), assuming only one call is needed.
+</p>
+<p>
+The call to listen() on line 15 causes the server to bind to a port and listen for incoming connections. Computers have thousands of ports, which act as communication end points. In order to connect to the server, clients must know exactly which port the server is listening on. Ports are identified by port numbers, with HTTP servers typically listening to port 80.
+</p>

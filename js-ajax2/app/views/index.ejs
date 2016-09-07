@@ -1,0 +1,253 @@
+<html>
+<head>
+  <title><%= title %></title>
+  <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style>
+.main {
+
+}
+.book {
+width:208px;
+float:left;
+margin:10px;
+border:1px #dedede solid;
+padding:5px;
+display:none;
+}
+
+.books {
+width:208px;
+float:left;
+margin:10px;
+border:1px #dedede solid;
+padding:5px;
+display:block;;
+}
+
+.title{
+margin-bottom:6px;}
+
+.description{font-size:11px; font-family:Geneva, Arial, Helvetica, sans-serif;}
+
+.date{font-size:10px; color:#999; margin-top:4px;}
+
+.loader{
+height:11px;
+}
+
+</style>
+
+</head>
+<body>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/"><%= project %></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/upload">Upload File</a></li>
+                <li><a href="/photogallery">Gallery</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li><a href="../navbar-static-top/">Static top</a></li>
+                <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+
+        <div class="container">
+
+          <!-- Main component for a primary marketing message or call to action -->
+          <div class="jumbotron">
+            <h2>Создание AJAX запросов с помощью jQuery</h2>
+            <p>AJAX запрос созданный с помощью jQuery занимает всего одну строчку кода, и уже оптимизирован для использования и с новыми и старыми версиями браузеров.</p>
+
+            <p>
+              <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+            </p>
+          </div>
+
+          <h2 id="tabs-examples">jQuery Ajax Examples</h2>
+
+          <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+              <ul class="nav nav-tabs" id="myTabs" role="tablist">
+
+                  <li role="presentation" class="active"><a href="#load" id="load-tab" role="tab" data-toggle="tab" aria-controls="load" aria-expanded="true">Load</a></li>
+
+                  <li role="presentation" class=""><a href="#post" role="tab" id="post-tab" data-toggle="tab" aria-controls="post" aria-expanded="false">Ajax Post</a></li>
+
+                  <li role="presentation" class=""><a href="#xml" role="tab" id="xml-tab" data-toggle="tab" aria-controls="xml" aria-expanded="false">Работа с XML</a></li>
+
+                  <li role="presentation" class=""><a href="#json" role="tab" id="json-tab" data-toggle="tab" aria-controls="json" aria-expanded="false">Работа с JSON</a></li>
+              </ul>
+
+              <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade active in" role="tabpanel" id="load" aria-labelledby="load-tab">
+                      <h4>Синтаксис:</h4>
+                          <p>
+                              $("селектор").load(url,данные,функция)
+                          </p>
+
+                          <p>
+                            <a class="btn btn-lg btn-primary" id="but1" role="button">Load File &raquo;</a>
+                            <a class="btn btn-lg btn-primary" id="but2" role="button">Load Html &raquo;</a>
+                            <a class="btn btn-lg btn-primary" id="but3" role="button">Load Image &raquo;</a>
+                          </p>
+
+                          <div id='result'></div>
+
+                      <script>
+                      $(document).ready(function(){
+
+                         $("#but1").click(function(){
+                            $("#result").load("/load");
+                         })
+                         $("#but2").click(function(){
+                            $("#result").load("/loadhtml");
+                         })
+                         $("#but3").click(function(){
+                            $("#result").load("/loadimg");
+                         })
+                      });
+                      </script>
+                  </div>
+
+                  <div class="tab-pane fade" role="tabpanel" id="post" aria-labelledby="post-tab">
+                      <p>В примере мы пересылаем скрипту calc переменную x и переменную y, он в свою очередь принимает эти переменные, производит их сложение и отправляет результат обратно.</p>
+
+                      <p>
+                          <input id="v1"/>   <input id="v2"/><a class="btn btn-lg btn-primary" id="but4" role="button">Calculate &raquo;</a>
+                      </p>
+
+                      <div id="sum">
+                      </div>
+                      <script>
+                      $(document).ready(function(){
+
+                         $("#but4").click(function(){
+                             var x=document.getElementById('v1').value;
+                             var y=document.getElementById('v2').value;
+                             var chunk = "x="+x+"&y="+y;
+                             $.ajax({
+                                    type: "POST",
+                                    url: "/calc",
+                                    data: chunk,
+                                    success: function(data) {
+                                      $("#sum").append(data);
+                                    },
+                                    error: function(error, txtStatus) {
+                                      console.log(txtStatus);
+                                      console.log('error');
+                                    }
+                                  });
+                         })
+                      });
+                      </script>
+
+                  </div>
+
+
+                  <div class="tab-pane fade" role="tabpanel" id="xml" aria-labelledby="xml-tab">
+                      <h4>Парсим XML средствами jQuery</h4>
+                      <a class="btn btn-lg btn-primary" id="but5" role="button">Парсим XML &raquo;</a>
+
+                      <div class="main">
+                          <div align="center" class="loader"><img src="/images/loader.gif" id="preload" width="16" height="11" align="absmiddle"/></div>
+                      </div>
+
+
+                      <script>
+                      $(document).ready(function () {
+                          $("#but5").click(function(){
+                              $.ajax({
+                                  type: "GET",
+                                  url: "/books",
+                                  dataType: "xml",
+                                  success: xmlParser
+                              });
+                          });
+                      });
+
+                      function xmlParser(xml) {
+                          $('#preload').fadeOut();
+                          $(xml).find("Book").each(function () {
+                              $(".main").append('<div class="book"><div class="title">' + $(this).find("Title").text() + '</div><div class="description">' + $(this).find("Description").text() + '</div><div class="date">Published ' + $(this).find("Date").text() + '</div></div>');
+                              $(".book").fadeIn(1000);
+                          });
+                      }
+                      </script>
+                  </div>
+                  <div class="tab-pane fade" role="tabpanel" id="json" aria-labelledby="json-tab">
+                      <h2>Работа с JSON файлами</h2>
+                      <p>
+                      Пример позволяет просматривать книги имеющиеся в каталоге книжного магазина.</p>
+
+                      <p>
+                          <a class="btn btn-lg btn-primary" id="but6" role="button">книги в каталоге книжного магазина &raquo;</a>
+                      </p>
+
+                      <div id="books">
+                      </div>
+                      <script>
+                      $(document).ready(function(){
+                         $("#but6").click(function(){
+                             $.ajax({
+                                    url: "/catalog",
+                                    method: 'GET',
+
+                                    dataType: "json",
+                                    success: function(data) {
+                                        data = JSON.parse(data);
+                                         $.each( data, function( i, item ) {
+                                         $("#books").append('<div class="books"><div class="title">' + item.title + '</div><div class="description">Author ' + item.author + '</div><div class="date">Cost ' + item.cost+ '</div><div class="date">Quantity '+ item.quantity + '</div></div>').fadeIn(1000);
+                                      });
+                                    },
+                                    error: function(error, txtStatus) {
+                                      console.log(txtStatus);
+                                      console.log('error');
+                                    }
+                                  });
+                         })
+                      });
+                      </script>
+                  </div>
+
+            </div>
+            </div>
+        </div> <!-- /container -->
+
+</body>
+</html>
