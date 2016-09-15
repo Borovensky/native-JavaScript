@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <title>canvasExample</title>
+        <meta charset='utf-8' />
+    </head>
+    <body>
+        <h1>HTML5 Canvas “Hello World!”</h1>
+        <canvas height='320' width='480' id='canvasOne'>Обновите браузер</canvas>
+        <script>
+            window.onload = function()
+             {
+                canvasApp();
+             }
+
+            function canvasApp() {
+                 drawScreen();
+
+                function drawScreen() {
+                       var theCanvas = document.getElementById("canvasOne");
+                       if (!theCanvas || !theCanvas.getContext) {
+                             console.log('Hello Html 1!');
+                         }else{
+                             console.log('Hello Canvas One!');
+                         }
+
+                }
+            }
+        </script>
+    </body>
+</html>
